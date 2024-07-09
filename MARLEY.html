@@ -121,11 +121,13 @@
                 }
             }
 
-            if (responses[input] !== undefined) {
-                return responses[input];
+            for (const key in responses) {
+                if (input.includes(key)) {
+                    return responses[key];
+                }
             }
 
-            return '黃努力都不努力了，你還在努力什麼';
+            return '努力都不努力了，你還在努力什麼';
         }
     </script>
 </body>
