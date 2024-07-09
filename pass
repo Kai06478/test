@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>輸入密碼</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .login-container {
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .input-group {
+            display: flex;
+            margin-top: 10px;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+        }
+        .input-group button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+        }
+        .input-group button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>請輸入密碼</h2>
+        <div class="input-group">
+            <input type="password" id="password-input" placeholder="廢物快點輸入密碼...">
+            <button onclick="checkPassword()">確定</button>
+        </div>
+    </div>
+
+    <script>
+        const correctPassword = '0517';
+        const redirectUrl = 'https://kai06478.github.io/test/MARLEY.html';
+
+        function checkPassword() {
+            const passwordInput = document.getElementById('password-input').value;
+            if (passwordInput === correctPassword) {
+                window.location.href = redirectUrl;
+            } else {
+                alert('密碼錯誤，請重試。');
+            }
+        }
+    </script>
+</body>
+</html>
