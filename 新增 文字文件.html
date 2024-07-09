@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>對話功能網頁</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .chat-container {
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-log {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .chat-log p {
+            margin: 5px 0;
+        }
+        .input-group {
+            display: flex;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .input-group button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .input-group button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-log" id="chat-log">
+            <p>歡迎！請輸入您的問題。</p>
+        </div>
+        <div class="input-group">
+            <input type="text" id="user-input" placeholder="輸入您的問題...">
+            <button onclick="sendMessage()">發送</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const chatLog = document.getElementById('chat-log');
+
+            if (userInput.value.trim() === '') {
+                return;
+            }
+
+            const userMessage = document.createElement('p');
+            userMessage.textContent = '您: ' + userInput.value;
+            chatLog.appendChild(userMessage);
+
+            const botMessage = document.createElement('p');
+            botMessage.textContent = '機器人: ' + getBotResponse(userInput.value);
+            chatLog.appendChild(botMessage);
+
+            userInput.value = '';
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function getBotResponse(input) {
+            const responses = {
+                '你好': '你好 我是黃馬力',
+                '您好': '你好 我是黃馬力',
+                '嗨': '你好 我是黃馬力',
+                'hi': '你好啊 黃馬力',
+                'Hi': '你好啊 黃馬力',
+                'hello': '你好啊 黃馬力',
+                '嗨 婊子': '你好啊 黃馬力',
+                '這是什麼': '自己想不會嗎 or 伸手牌嗎',
+                '這啥': '自己想不會嗎 or 伸手牌嗎',
+                '25.010297688584387, 121.51460793987134': '自己想不會嗎 or 伸手牌嗎',
+                '密碼是什麼': '爛死 廢物',
+                '安安': '爛死 廢物',
+                '拼圖': '跟你講是要玩什麼',
+                '再來了': '爛死 廢物',
+                '在來了': '爛死 廢物',
+                '再來': '爛死 廢物',
+                '公司': '人去樓空，大家都被判我',
+                'Frame Marvelous': '人去樓空，大家都被判我',
+                '石': '石頭人是背古仔'
+            };
+
+            for (const key in responses) {
+                if (input.includes(key)) {
+                    return responses[key];
+                }
+            }
+
+            return '對不起，我不明白您的問題。';
+        }
+    </script>
+</body>
+</html>
