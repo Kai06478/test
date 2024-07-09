@@ -14,11 +14,15 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
-        .chat-container {
+        .login-container, .chat-container {
             width: 300px;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .login-container.active, .chat-container.active {
+            display: block;
         }
         .chat-log {
             height: 200px;
@@ -51,7 +55,15 @@
     </style>
 </head>
 <body>
-    <div class="chat-container">
+    <div class="login-container active" id="login-container">
+        <h2>請輸入密碼</h2>
+        <div class="input-group">
+            <input type="password" id="password-input" placeholder="輸入密碼...">
+            <button onclick="checkPassword()">確定</button>
+        </div>
+    </div>
+
+    <div class="chat-container" id="chat-container">
         <div class="chat-log" id="chat-log">
             <p>歡迎！請輸入您的問題。</p>
         </div>
@@ -62,6 +74,18 @@
     </div>
 
     <script>
+        const correctPassword = '0517';
+
+        function checkPassword() {
+            const passwordInput = document.getElementById('password-input').value;
+            if (passwordInput === correctPassword) {
+                document.getElementById('login-container').classList.remove('active');
+                document.getElementById('chat-container').classList.add('active');
+            } else {
+                alert('密碼錯誤，請重試。');
+            }
+        }
+
         let passwordRequestCount = 0;
 
         function sendMessage() {
@@ -124,17 +148,4 @@
             }
 
             if (input.includes('鄭') || input.includes('忠') || input.includes('凱')) {
-                return '你是在說大盜克萊德嗎?';
-            }
-
-            for (const key in responses) {
-                if (input.includes(key)) {
-                    return responses[key];
-                }
-            }
-
-            return '努力都不努力了，你還在努力什麼';
-        }
-    </script>
-</body>
-</html>
+                return '你是在說大盜克
