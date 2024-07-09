@@ -62,6 +62,8 @@
     </div>
 
     <script>
+        let passwordRequestCount = 0;
+
         function sendMessage() {
             const userInput = document.getElementById('user-input');
             const chatLog = document.getElementById('chat-log');
@@ -83,35 +85,47 @@
         }
 
         function getBotResponse(input) {
+            input = input.toLowerCase();
             const responses = {
                 '你好': '你好 我是黃馬力',
                 '您好': '你好 我是黃馬力',
                 '嗨': '你好 我是黃馬力',
                 'hi': '你好啊 黃馬力',
-                'Hi': '你好啊 黃馬力',
                 'hello': '你好啊 黃馬力',
                 '嗨 婊子': '你好啊 黃馬力',
                 '這是什麼': '自己想不會嗎 or 伸手牌嗎',
                 '這啥': '自己想不會嗎 or 伸手牌嗎',
                 '25.010297688584387, 121.51460793987134': '自己想不會嗎 or 伸手牌嗎',
-                '密碼是什麼': '爛死 廢物',
                 '安安': '爛死 廢物',
                 '拼圖': '跟你講是要玩什麼',
                 '再來了': '爛死 廢物',
                 '在來了': '爛死 廢物',
                 '再來': '爛死 廢物',
                 '公司': '人去樓空，大家都被判我',
-                'Frame Marvelous': '人去樓空，大家都被判我',
+                'frame marvelous': '人去樓空，大家都被判我',
                 '石': '石頭人是背古仔'
             };
 
-            for (const key in responses) {
-                if (input.includes(key)) {
-                    return responses[key];
+            if (input.includes('拼圖')) {
+                return '跟你講是要玩什麼';
+            }
+
+            if (input.includes('密碼') || input.includes('求你') || input.includes('拜託')) {
+                passwordRequestCount++;
+                if (passwordRequestCount === 1) {
+                    return '爛死 廢物 求我啊';
+                } else if (passwordRequestCount === 2) {
+                    return '說拜託阿 也須會跟你說';
+                } else if (passwordRequestCount >= 3) {
+                    return '騙你的 自己想，可能跟地圖有關吧';
                 }
             }
 
-            return '對不起，我不明白您的問題。';
+            if (responses[input] !== undefined) {
+                return responses[input];
+            }
+
+            return '黃努力都不努力了，你還在努力什麼';
         }
     </script>
 </body>
