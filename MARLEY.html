@@ -17,8 +17,9 @@
         .chat-container {
             width: 300px;
             padding: 20px;
-            background-color: white;
+            background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
         }
         .chat-log {
             height: 200px;
@@ -26,6 +27,8 @@
             border: 1px solid #ddd;
             padding: 10px;
             margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: white;
         }
         .chat-log p {
             margin: 5px 0;
@@ -37,6 +40,7 @@
             flex: 1;
             padding: 10px;
             border: 1px solid #ddd;
+            border-radius: 10px 0 0 10px;
         }
         .input-group button {
             padding: 10px;
@@ -44,6 +48,7 @@
             color: white;
             border: none;
             cursor: pointer;
+            border-radius: 0 10px 10px 0;
         }
         .input-group button:hover {
             background-color: #0056b3;
@@ -53,7 +58,7 @@
 <body>
     <div class="chat-container">
         <div class="chat-log" id="chat-log">
-            <p>我是打工人亦廷，請問有什麼可以幫你的嗎?。</p>
+            <p>我是打工人亦廷，請問有什麼可以幫你的嗎?</p>
         </div>
         <div class="input-group">
             <input type="text" id="user-input" placeholder="輸入您的問題...">
