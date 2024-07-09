@@ -121,6 +121,10 @@
                 }
             }
 
+            if (input.includes('鄭忠凱')) {
+                return '你是在說大道克萊德嗎';
+            }
+
             for (const key in responses) {
                 if (input.includes(key)) {
                     return responses[key];
