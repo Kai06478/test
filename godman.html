@@ -50,13 +50,16 @@
         }
         .special-gif {
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 400px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 3;
             display: none;
+        }
+        audio {
+            display: none; /* 隱藏音頻控件 */
         }
     </style>
 </head>
@@ -65,22 +68,22 @@
     <div class="card-container" onclick="revealRandomImage()"></div>
     <img src="https://i.imgur.com/J15EJpB.gif" class="overlay-gif" style="display: none;">
     <img src="https://i.imgur.com/WgvYktn.gif" class="special-gif">
+    <audio id="audioPlayer" src="https://drive.google.com/uc?export=download&id=1V12R8M13AWcrCOBRnXofiOtBKK2F5lGJ"></audio>
 
     <script>
-        let clickCount = 0;
         function revealRandomImage() {
-            clickCount++;
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.play();  // 播放音效
+
             const card = document.querySelector('.card-container');
             const overlayGif = document.querySelector('.overlay-gif');
             const specialGif = document.querySelector('.special-gif');
 
-            if (clickCount % 20 === 0) {
-                specialGif.style.display = 'block';
-                setTimeout(() => {
-                    specialGif.style.display = 'none';
-                }, 9000);  // GIF 播放時間調整為 9 秒
-                return; // 不進行其他圖片的變換
-            }
+            // 每次点击图片时都会显示特定的 GIF 图片
+            specialGif.style.display = 'block';
+            setTimeout(() => {
+                specialGif.style.display = 'none';
+            }, 9000);  // GIF 播放时间调整为 9 秒
 
             const images = [
                 {url: 'https://i.imgur.com/Pq7dNtC.gif', weight: 3},
@@ -88,7 +91,7 @@
                 {url: 'https://i.imgur.com/rEqS22P.gif', weight: 16},
                 {url: 'https://i.imgur.com/gkHKc65.gif', weight: 15},
                 {url: 'https://i.imgur.com/kvgdToK.png', weight: 20},
-                {url: 'https://i.imgur.com/1axjulr.png', weight: 30}
+                {url: 'https://i.imgur.com/cCVSyDC.gif', weight: 30}
             ];
 
             const totalWeight = images.reduce((sum, image) => sum + image.weight, 0);
@@ -110,7 +113,7 @@
                 overlayGif.style.display = 'block';
                 setTimeout(() => {
                     overlayGif.style.display = 'none';
-                }, 1500);  // 您可以根據 overlay GIF 的長度來調整這個時間
+                }, 1500);  // 根据 overlay GIF 的长度来调整这个时间
             }, 500);
         }
     </script>
